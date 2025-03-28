@@ -1,0 +1,30 @@
+{
+    "terminal.integrated.profiles.windows": {
+        "PowerShell": {
+            "source": "PowerShell",
+            "icon": "terminal-powershell"
+        },
+        "Command Prompt": {
+            "path": [
+                "${env:windir}\\Sysnative\\cmd.exe",
+                "${env:windir}\\System32\\cmd.exe"
+            ],
+            "args": [],
+            "icon": "terminal-cmd"
+        },
+        "Git Bash": {
+            "source": "Git Bash"
+        },
+        "Developer PowerShell for VS 2022": {
+            "source": "PowerShell",
+            "icon": "terminal-powershell",
+            "args": [
+                "-WorkingDirectory",
+                "${workspaceFolder}",
+                "-NoExit",
+                "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/Tools/Launch-VsDevShell.ps1",
+                "-SkipAutomaticLocation"
+            ]
+        }
+    }
+}
