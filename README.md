@@ -42,8 +42,13 @@ Here's an example
     ]
 }
 ```
-2. Run command `cmake --preset=x64-debug` or other defined preset in your `CMakeUserPresets.json` file. This will take a while since we are building the dependencies from source.
+2. Set the VCPKG_ROOT environment variable
+    * If using the Developer Powershell for VS: `$env:VCPKG_ROOT=C:/path/to/your/dir/vcpkg`
+1. Run command `cmake --preset=x64-debug` or other defined preset in your `CMakeUserPresets.json` file. This will take a while since we are building the dependencies from source.
     * ℹ Quick side note: if you're using Windows MSVC, use the Developer Powershell/Command Prompt for VS. I've added the shell command in `Settings.json`
-3. `cmake --build build` builds the project
-4. Run executable
+1. `cmake --build build` builds the project
+1. Run Deployment executable for your OS, although it might not be required for Unix like operating systems, it depends on how you installed Qt.
+    * Windows Debug: `.\build\vcpkg_installed\x64-windows\tools\Qt6\bin\windeployqt.debug.bat .\build\randomdesktopapp.exe`
+    * Windows Release: `.\build\vcpkg_installed\x64-windows\tools\Qt6\bin\windeployqt.exe .\build\randomdesktopapp.exe`
+1. Run executable
     * Windows `.\build\randomdesktopapp.exe`
