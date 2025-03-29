@@ -22,7 +22,7 @@ To run on your desktop there are some prerequisites:
     * Clang 18+
 * vcpkg latest
 
-### Running
+### First Build and Run
 1. Create a `CMakeUserPresets.json` file.
 Here's an example
 ```json
@@ -52,3 +52,18 @@ Here's an example
     * Windows Release: `.\build\vcpkg_installed\x64-windows\tools\Qt6\bin\windeployqt.exe .\build\randomdesktopapp.exe`
 1. Run executable
     * Windows `.\build\randomdesktopapp.exe`
+
+### Updates and Run
+To run compilation updates are simpler since all the setup is done upfront in the first time run stage.
+
+1. `cmake --build build`
+1. `.\build\randomdesktopapp.exe`
+
+## 🤓
+If you're not a neovim developer, I don't know what you're doing with your life. If you're like me, though, you probably depend on some type of Code editor.
+### VS Code
+I'm currently using VS Code as my main editor for this project. Maybe I'll try different IDEs in the future. Or maybe I'll be a Chad one day and use neovim 😉 I mean it's the whole reason why I'm going through this struggle so that I don't have to depend on using Qt Creator or some weird Visual Studio Qt plugin. I am using CMake and vcpkg to avoid any type of vendor lock in. Anyways enough yappin.
+
+* ***AFTER*** your first build and run is successful, install the recommended plugins for C++
+* On the CMake plugin, click on a configuration. If you copy and pasta the `CMakeUserPresets.json` you should see the `x64-debug` configuration. You should be able to see a "document" button on the side. 
+* Click the button and it should configure the CMake settings on the IDE. This will help with those annoying red squiggly lines and code completion.
