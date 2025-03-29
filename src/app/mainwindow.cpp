@@ -1,25 +1,45 @@
 #include "mainwindow.h"
 
+#include <QAction>
 #include <QLabel>
 #include <QPushButton>
-#include <QVBoxLayout>
 #include <QString>
+#include <QVBoxLayout>
+#include <QMenuBar>
 
-MainWindow::MainWindow(QWidget *parent) : QWidget(parent), clickCount(0) {
+MainWindow::MainWindow(QMainWindow *parent) : QMainWindow(parent), clickCount(0) {
+    // Set MainWindow properties
     setWindowTitle("Random Desktop App");
+    setGeometry(0, 0, 800, 400);
+
+    // Create widgets
+    QWidget *widget = new QWidget;
+    setCentralWidget(widget);
+    
+    QWidget *topFiller = new QWidget;
+    topFiller->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+
+    infoLabel = new QLabel(tr("<i>Choose a menu option, or right-click to invoke a context menu</i>"));
+    infoLabel->setFrameStyle(QFrame::StyledPanel | QFrame::Sunken);
+    infoLabel->setAlignment(Qt::AlignCenter);
 
     greetingLabel = new QLabel("Hello, World!", this);
     clickButton = new QPushButton("Click Me!", this);
 
-    mainLayout = new QVBoxLayout;
-    mainLayout->addWidget(greetingLabel);
-    mainLayout->addWidget(clickButton);
+    QWidget *bottomFiller = new QWidget;
+    bottomFiller->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
-    this->setLayout(mainLayout);
+    // Set Layout
+    auto layout = new QVBoxLayout;
+    layout->setContentsMargins(5, 5, 5, 5);
+    layout->addWidget(topFiller);
+    layout->addWidget(infoLabel);
+    layout->addWidget(greetingLabel);
+    layout->addWidget(clickButton);
+    layout->addWidget(bottomFiller);
+    widget->setLayout(layout);
 
     connect(clickButton, &QPushButton::clicked, this, &MainWindow::onButtonClick);
-
-    resize(400, 200);
 }
 
 MainWindow::~MainWindow() {
