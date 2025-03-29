@@ -18,6 +18,8 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent), clickCount(0) {
     this->setLayout(mainLayout);
 
     connect(clickButton, &QPushButton::clicked, this, &MainWindow::onButtonClick);
+
+    resize(400, 200);
 }
 
 MainWindow::~MainWindow() {
