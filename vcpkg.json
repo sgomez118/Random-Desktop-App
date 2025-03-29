@@ -1,6 +1,7 @@
 {
   "dependencies": [
     "qt-advanced-docking-system",
-    "qtbase"
+    "qtbase",
+    "qttools"
   ]
 }
