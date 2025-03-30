@@ -2,10 +2,11 @@
 
 #include <QAction>
 #include <QLabel>
+#include <QMenuBar>
 #include <QPushButton>
+#include <QStatusBar>
 #include <QString>
 #include <QVBoxLayout>
-#include <QMenuBar>
 
 MainWindow::MainWindow(QMainWindow *parent) : QMainWindow(parent), clickCount(0) {
     // Set MainWindow properties
@@ -19,7 +20,7 @@ MainWindow::MainWindow(QMainWindow *parent) : QMainWindow(parent), clickCount(0)
     QWidget *topFiller = new QWidget;
     topFiller->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
-    infoLabel = new QLabel(tr("<i>Choose a menu option, or right-click to invoke a context menu</i>"));
+    infoLabel = new QLabel("<i>Choose a menu option, or right-click to invoke a context menu</i>");
     infoLabel->setFrameStyle(QFrame::StyledPanel | QFrame::Sunken);
     infoLabel->setAlignment(Qt::AlignCenter);
 
@@ -39,6 +40,12 @@ MainWindow::MainWindow(QMainWindow *parent) : QMainWindow(parent), clickCount(0)
     layout->addWidget(bottomFiller);
     widget->setLayout(layout);
 
+    createActions();
+    createMenus();
+
+    QString message = "A context menu is available by right-clicking";
+    statusBar()->showMessage(message);
+
     connect(clickButton, &QPushButton::clicked, this, &MainWindow::onButtonClick);
 }
 
@@ -52,4 +59,20 @@ void MainWindow::onButtonClick() {
     clickCount++;
     QString newText = QString("Button clicked %1 times!").arg(clickCount);
     greetingLabel->setText(newText);
+}
+
+void MainWindow::createActions() {
+    newAct = new QAction(QIcon::fromTheme(QIcon::ThemeIcon::DocumentNew), "&New", this);
+    newAct->setShortcut(QKeySequence::New);
+    newAct->setStatusTip("Create a new file");
+    connect(newAct, &QAction::triggered, this, &MainWindow::newFile);
+}
+
+void MainWindow::createMenus() {
+    fileMenu = menuBar()->addMenu("&File");
+
+}
+
+void MainWindow::newFile() {
+    qInfo("Create a new file!");
 }

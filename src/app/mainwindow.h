@@ -24,7 +24,7 @@ protected:
 private slots:
     void onButtonClick();
 
-    // void newFile();
+    void newFile();
     // void open();
     // void save();
     // void print();
@@ -45,8 +45,8 @@ private slots:
     // void aboutQt();
 
 private:
-    // void createActions();
-    // void createMenus();
+    void createActions();
+    void createMenus();
 
     QLabel *greetingLabel;
     QPushButton *clickButton;
