@@ -1,13 +1,13 @@
-#pragma once
+#ifndef RDA_APP_MAINWINDOW_H_
+#define RDA_APP_MAINWINDOW_H_
 
 #include <QWidget>
 #include <QMainWindow>
-
-class QContextMenuEvent;
-class QLabel;
-class QMenu;
-class QMenuBar;
-class QPushButton;
+#include <QAction>
+#include <QActionGroup>
+#include <QLabel>
+#include <QMenuBar>
+#include <QPushButton>
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
@@ -80,3 +80,5 @@ private:
 
     int clickCount;
 };
+
+#endif // RDA_APP_MAINWINDOW_H_
