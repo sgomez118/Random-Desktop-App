@@ -1,9 +1,5 @@
 #include "mainwindow.h"
 
-#include <QAction>
-#include <QLabel>
-#include <QMenuBar>
-#include <QPushButton>
 #include <QStatusBar>
 #include <QString>
 #include <QVBoxLayout>
@@ -62,15 +58,47 @@ void MainWindow::onButtonClick() {
 }
 
 void MainWindow::createActions() {
+    // File Menu
     newAct = new QAction(QIcon::fromTheme(QIcon::ThemeIcon::DocumentNew), "&New", this);
     newAct->setShortcut(QKeySequence::New);
     newAct->setStatusTip("Create a new file");
     connect(newAct, &QAction::triggered, this, &MainWindow::newFile);
+
+    openAct = new QAction(QIcon::fromTheme(QIcon::ThemeIcon::DocumentOpen),"&Open", this);
+    openAct->setShortcut(QKeySequence::Open);
+    openAct->setStatusTip("Open a file");
+    // connect
+
+    saveAct = new QAction(QIcon::fromTheme(QIcon::ThemeIcon::DocumentSave), "&Save", this);
+    saveAct->setShortcut(QKeySequence::Save);
+    saveAct->setStatusTip("Save file");
+    // connect
+
+    printAct = new QAction(QIcon::fromTheme(QIcon::ThemeIcon::DocumentPrint), "&Print", this);
+    printAct->setShortcut(QKeySequence::Print);
+    printAct->setStatusTip("Print file");
+    // connect
+
+    exitAct = new QAction(QIcon::fromTheme(QIcon::ThemeIcon::ApplicationExit), "&Exit", this);
+    exitAct->setStatusTip("Exit application");
+    // connect
+
+    // Edit Menu
+    // Help Menu
 }
 
 void MainWindow::createMenus() {
     fileMenu = menuBar()->addMenu("&File");
+    fileMenu->addAction(newAct);
+    fileMenu->addAction(openAct);
+    fileMenu->addAction(saveAct);
+    fileMenu->addAction(printAct);
+    fileMenu->addSeparator();
+    fileMenu->addAction(exitAct);
 
+    editMenu = menuBar()->addMenu("&Edit");
+    
+    helpMenu = menuBar()->addMenu("&Help");
 }
 
 void MainWindow::newFile() {
