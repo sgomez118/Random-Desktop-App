@@ -58,7 +58,7 @@ void MainWindow::onButtonClick() {
 }
 
 void MainWindow::createActions() {
-    // File Menu
+    // file menu actions
     newAct = new QAction(QIcon::fromTheme(QIcon::ThemeIcon::DocumentNew), "&New", this);
     newAct->setShortcut(QKeySequence::New);
     newAct->setStatusTip("Create a new file");
@@ -83,7 +83,10 @@ void MainWindow::createActions() {
     exitAct->setStatusTip("Exit application");
     // connect
 
-    // Edit Menu
+    // edit menu actions
+    undoAct = new QAction(QIcon::fromTheme(QIcon::ThemeIcon::EditUndo), "&Undo", this);
+    undoAct->setShortcut(QKeySequence::Undo);
+    
     // Help Menu
 }
 
