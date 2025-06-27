@@ -9,6 +9,7 @@ MainWindow::MainWindow(QMainWindow *parent) : QMainWindow(parent), clickCount(0)
     setWindowTitle("Random Desktop App");
     setGeometry(0, 0, 800, 400);
 
+    
     // Create widgets
     QWidget *widget = new QWidget;
     setCentralWidget(widget);

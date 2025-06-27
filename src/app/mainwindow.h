@@ -9,6 +9,8 @@
 #include <QMenuBar>
 #include <QPushButton>
 
+#include "DockManager.h"
+
 class MainWindow : public QMainWindow {
     Q_OBJECT
 

@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(Qt6 REQUIRED COMPONENTS Widgets)
+find_package(qtadvanceddocking-qt6 REQUIRED)
 qt_standard_project_setup()
 
 add_subdirectory(src/app)
