@@ -25,9 +25,9 @@ private slots:
     void onButtonClick();
 
     void newFile();
-    // void open();
-    // void save();
-    // void print();
+    void open();
+    void save();
+    void print();
     // void undo();
     // void redo();
     // void cut();

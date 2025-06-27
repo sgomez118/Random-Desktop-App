@@ -67,17 +67,17 @@ void MainWindow::createActions() {
     openAct = new QAction(QIcon::fromTheme(QIcon::ThemeIcon::DocumentOpen),"&Open", this);
     openAct->setShortcut(QKeySequence::Open);
     openAct->setStatusTip("Open a file");
-    // connect
+    connect(openAct, &QAction::triggered, this, &MainWindow::open);
 
     saveAct = new QAction(QIcon::fromTheme(QIcon::ThemeIcon::DocumentSave), "&Save", this);
     saveAct->setShortcut(QKeySequence::Save);
     saveAct->setStatusTip("Save file");
-    // connect
+    connect(saveAct, &QAction::triggered, this, &MainWindow::save);
 
     printAct = new QAction(QIcon::fromTheme(QIcon::ThemeIcon::DocumentPrint), "&Print", this);
     printAct->setShortcut(QKeySequence::Print);
     printAct->setStatusTip("Print file");
-    // connect
+    connect(printAct, &QAction::triggered, this, &MainWindow::print);
 
     exitAct = new QAction(QIcon::fromTheme(QIcon::ThemeIcon::ApplicationExit), "&Exit", this);
     exitAct->setStatusTip("Exit application");
@@ -106,4 +106,24 @@ void MainWindow::createMenus() {
 
 void MainWindow::newFile() {
     qInfo("Create a new file!");
+
+    greetingLabel->setText("Create a new file!");
+}
+
+void MainWindow::open() {
+    qInfo("Open a file!");
+
+    greetingLabel->setText("Open a file!");
+}
+
+void MainWindow::save() {
+    qInfo("Save a file!");
+
+    greetingLabel->setText("Save a file!");
+}
+
+void MainWindow::print() {
+    qInfo("Print file!");
+
+    greetingLabel->setText("Print file!");
 }
