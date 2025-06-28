@@ -2,6 +2,7 @@
 
 #include <QStatusBar>
 #include <QString>
+#include <QTextEdit>
 #include <QVBoxLayout>
 
 MainWindow::MainWindow(QMainWindow *parent) : QMainWindow(parent), clickCount(0) {
@@ -9,41 +10,44 @@ MainWindow::MainWindow(QMainWindow *parent) : QMainWindow(parent), clickCount(0)
     setWindowTitle("Random Desktop App");
     setGeometry(0, 0, 800, 400);
 
+    // Create the Dock Manager
+    ads::CDockManager* dockManager = new ads::CDockManager(this);
+
+    // Create dockable widgets
+    
+    // 1. A simple text editor
+    ads::CDockWidget* textEditorWidget = new ads::CDockWidget("Text Editor 1");
+    textEditorWidget->setWidget(new QTextEdit());
+    textEditorWidget->setIcon(style()->standardIcon(QStyle::SP_FileIcon));
+    
+    // 2. Another text editor
+    ads::CDockWidget* notesWidget = new ads::CDockWidget("Notes");
+    notesWidget->setWidget(new QTextEdit());
+    notesWidget->setIcon(style()->standardIcon(QStyle::SP_FileDialogNewFolder));
+
+    // 3. A label widget for information
+    ads::CDockWidget* infoWidget = new ads::CDockWidget("Info");
+    infoLabel = new QLabel("This is an information panel.\nYou can drag and drop these widgets.");
+    infoLabel->setWordWrap(true);
+    infoLabel->setAlignment(Qt::AlignTop);
+    infoWidget->setWidget(infoLabel);
+    infoWidget->setIcon(style()->standardIcon(QStyle::SP_MessageBoxInformation));
+    
+    // Add widgets to the dock manager
+    dockManager->addDockWidget(ads::RightDockWidgetArea, textEditorWidget);
+    dockManager->addDockWidget(ads::BottomDockWidgetArea, notesWidget);
+    dockManager->addDockWidget(ads::RightDockWidgetArea, infoWidget, textEditorWidget->dockAreaWidget());
     
     // Create widgets
-    QWidget *widget = new QWidget;
-    setCentralWidget(widget);
-    
-    QWidget *topFiller = new QWidget;
-    topFiller->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-
-    infoLabel = new QLabel("<i>Choose a menu option, or right-click to invoke a context menu</i>");
-    infoLabel->setFrameStyle(QFrame::StyledPanel | QFrame::Sunken);
-    infoLabel->setAlignment(Qt::AlignCenter);
-
-    greetingLabel = new QLabel("Hello, World!", this);
-    clickButton = new QPushButton("Click Me!", this);
-
-    QWidget *bottomFiller = new QWidget;
-    bottomFiller->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-
-    // Set Layout
-    auto layout = new QVBoxLayout;
-    layout->setContentsMargins(5, 5, 5, 5);
-    layout->addWidget(topFiller);
-    layout->addWidget(infoLabel);
-    layout->addWidget(greetingLabel);
-    layout->addWidget(clickButton);
-    layout->addWidget(bottomFiller);
-    widget->setLayout(layout);
+    ads::CDockWidget* centralWidget = new ads::CDockWidget("Central Document");
+    centralWidget->setWidget(new QTextEdit());
+    dockManager->addDockWidget(ads::CenterDockWidgetArea, centralWidget);
 
     createActions();
     createMenus();
 
     QString message = "A context menu is available by right-clicking";
     statusBar()->showMessage(message);
-
-    connect(clickButton, &QPushButton::clicked, this, &MainWindow::onButtonClick);
 }
 
 MainWindow::~MainWindow() {

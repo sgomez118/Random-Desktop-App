@@ -28,9 +28,5 @@
                 "-SkipAutomaticLocation",
             ]
         }
-    },
-    "files.associations": {
-        "qwidget": "cpp",
-        "qpushbutton": "cpp"
     }
 }
