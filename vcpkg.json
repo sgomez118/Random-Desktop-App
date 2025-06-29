@@ -2,6 +2,7 @@
   "dependencies": [
     "qt-advanced-docking-system",
     "qtbase",
-    "qttools"
+    "qttools",
+    "qtmultimedia"
   ]
 }
