@@ -1,4 +1,5 @@
 add_executable(${PROJECT_NAME}
+    camerawidget.cpp
     mainwindow.cpp
     main.cpp
 )

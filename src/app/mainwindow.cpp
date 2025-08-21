@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "camerawidget.h"
 
 #include <QStatusBar>
 #include <QString>
@@ -32,11 +33,15 @@ MainWindow::MainWindow(QMainWindow *parent) : QMainWindow(parent), clickCount(0)
     infoLabel->setAlignment(Qt::AlignTop);
     infoWidget->setWidget(infoLabel);
     infoWidget->setIcon(style()->standardIcon(QStyle::SP_MessageBoxInformation));
+
+    ads::CDockWidget* cameraWidget = new ads::CDockWidget("Camera");
+    cameraWidget->setWidget(new CameraWidget());
     
     // Add widgets to the dock manager
     dockManager->addDockWidget(ads::RightDockWidgetArea, textEditorWidget);
     dockManager->addDockWidget(ads::BottomDockWidgetArea, notesWidget);
     dockManager->addDockWidget(ads::RightDockWidgetArea, infoWidget, textEditorWidget->dockAreaWidget());
+    dockManager->addDockWidget(ads::LeftDockWidgetArea, cameraWidget);
     
     // Create widgets
     ads::CDockWidget* centralWidget = new ads::CDockWidget("Central Document");
